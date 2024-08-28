@@ -24,11 +24,11 @@ function removeBlackOverlay() {
 }
 
 // Variable to store the active timer ID
-let activeTimer = null;
+let activeTimer: number | null = null;
 
 // Function to pause the video after a specified delay
-function pauseVideoAfterDelay(delay) {
-  activeTimer = setTimeout(() => {
+function pauseVideoAfterDelay(delay: number) {
+  activeTimer = window.setTimeout(() => {
     const videoElement = document.querySelector("video");
     if (videoElement && !videoElement.paused) {
       videoElement.pause();
@@ -41,14 +41,16 @@ function pauseVideoAfterDelay(delay) {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.startPauseTimer !== undefined) {
     // Clear any existing timer
-    clearTimeout(activeTimer);
+    clearTimeout(activeTimer as number);
     // Start a new timer with the specified delay
     pauseVideoAfterDelay(message.startPauseTimer);
   }
 
   if (message.pauseNow) {
     // Clear the current timer without starting a new one
-    clearTimeout(activeTimer);
+    if (activeTimer !== null) {
+      clearTimeout(activeTimer);
+    }
     activeTimer = null;
   }
 });
