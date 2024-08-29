@@ -1,75 +1,79 @@
 function addBlackOverlay() {
-  const overlay = document.createElement("div");
-  overlay.id = "black-overlay";
-  overlay.style.position = "fixed";
-  overlay.style.top = "0";
-  overlay.style.left = "0";
-  overlay.style.width = "100%";
-  overlay.style.height = "100%";
-  overlay.style.backgroundColor = "black";
-  overlay.style.opacity = "1";
-  overlay.style.zIndex = "9999"; // Make sure it is on top of other elements
+  const overlay = document.createElement("div")
+  overlay.id = "black-overlay"
+  overlay.style.position = "fixed"
+  overlay.style.top = "0"
+  overlay.style.left = "0"
+  overlay.style.width = "100%"
+  overlay.style.height = "100%"
+  overlay.style.backgroundColor = "black"
+  overlay.style.opacity = "1"
+  overlay.style.zIndex = "9999" // Make sure it is on top of other elements
 
   // Add event listener to remove the overlay when clicked
-  overlay.addEventListener("click", removeBlackOverlay);
+  overlay.addEventListener("click", removeBlackOverlay)
 
-  document.body.appendChild(overlay);
+  document.body.appendChild(overlay)
 }
 
 function removeBlackOverlay() {
-  const overlay = document.getElementById("black-overlay");
+  const overlay = document.getElementById("black-overlay")
   if (overlay) {
-    document.body.removeChild(overlay);
+    document.body.removeChild(overlay)
   }
 }
 
 // Variable to store the active timer ID
-let activeTimer: number | null = null;
+let activeTimer: number | undefined = undefined
 
 // Function to pause the video after a specified delay
 function pauseVideoAfterDelay(delay: number) {
   activeTimer = window.setTimeout(() => {
-    const videoElement = document.querySelector("video");
+    const videoElement = document.querySelector("video")
     if (videoElement && !videoElement.paused) {
-      videoElement.pause();
-      addBlackOverlay();
+      videoElement.pause()
+      addBlackOverlay()
     }
-  }, delay);
+  }, delay)
 }
 
+interface Message {
+  startPauseTimer?: number
+  clearPausing?: boolean
+}
 // Listen for messages from popup.js
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message: Message) => {
   if (message.startPauseTimer !== undefined) {
     // Clear any existing timer
-    clearTimeout(activeTimer as number);
+    clearTimeout(activeTimer)
     // Start a new timer with the specified delay
-    pauseVideoAfterDelay(message.startPauseTimer);
+    pauseVideoAfterDelay(message.startPauseTimer)
   }
 
-  if (message.pauseNow) {
+  if (message.clearPausing) {
     // Clear the current timer without starting a new one
-    if (activeTimer !== null) {
-      clearTimeout(activeTimer);
+    if (activeTimer !== undefined) {
+      clearTimeout(activeTimer)
     }
-    activeTimer = null;
+    activeTimer = undefined
   }
-});
+})
 
 // Check if a pause timer is active on page load/reload
 chrome.storage.sync.get("activePause", (data) => {
   if (data.activePause) {
-    let delay;
+    let delay
     if (data.activePause === "pause30") {
-      delay = 1800000; // 30 minutes
+      delay = 1800000 // 30 minutes
     } else if (data.activePause === "pause45") {
-      delay = 2700000; // 45 minutes
+      delay = 2700000 // 45 minutes
     } else if (data.activePause === "pause60") {
-      delay = 3600000; // 60 minutes
+      delay = 3600000 // 60 minutes
     } else if (data.activePause === "pause5") {
-      delay = 300000; // 5 minutes
+      delay = 300000 // 5 minutes
     }
     if (delay) {
-      pauseVideoAfterDelay(delay);
+      pauseVideoAfterDelay(delay)
     }
   }
-});
+})

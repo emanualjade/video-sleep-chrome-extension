@@ -12,7 +12,7 @@
   background-color: #ffffff;
   cursor: pointer;
 }
-.btn.active  {
-  background-color: #4CAF50;
+.btn.active {
+  background-color: #4caf50;
   color: #ffffff;
 }
