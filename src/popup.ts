@@ -63,6 +63,8 @@ function updateBadgeText(activeButton: string): void {
 
 // Load the current state from chrome storage
 chrome.storage.sync.get("activePause", (data: Record<string, string>) => {
+  console.log("open")
+  console.log({data})
   updateButtonState(data.activePause, true)
   updateBadgeText(data.activePause)
 })
