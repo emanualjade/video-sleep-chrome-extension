@@ -11,42 +11,38 @@ const pause60Button = document.getElementById(
   "pause60",
 ) as HTMLButtonElement | null
 
+/// Define the buttons object
+const buttons: Record<
+  "pause5" | "pause30" | "pause45" | "pause60",
+  HTMLButtonElement | null
+> = {
+  pause5: pause5Button,
+  pause30: pause30Button,
+  pause45: pause45Button,
+  pause60: pause60Button,
+}
+type buttonsType = keyof typeof buttons
 // Function to update button text and state
-function updateButtonState(activeButton: string, state: boolean): void {
-  if (pause5Button) {
-    pause5Button.textContent =
-      state && activeButton === "pause5" ? "Disable Pause in 5" : "Pause in 5"
-    pause5Button.classList.toggle("active", state && activeButton === "pause5")
+function updateButtonState(
+  activeButton: buttonsType,
+  makeActive: boolean,
+): void {
+  // Remove the active class from all buttons and reset text content
+  for (const key in buttons) {
+    const button = buttons[key as buttonsType]
+    if (button) {
+      button.classList.remove("active")
+      button.textContent = `Pause in ${key.slice(5)}`
+    }
   }
-  if (pause30Button) {
-    pause30Button.textContent =
-      state && activeButton === "pause30"
-        ? "Disable Pause in 30"
-        : "Pause in 30"
-    pause30Button.classList.toggle(
-      "active",
-      state && activeButton === "pause30",
-    )
-  }
-  if (pause45Button) {
-    pause45Button.textContent =
-      state && activeButton === "pause45"
-        ? "Disable Pause in 45"
-        : "Pause in 45"
-    pause45Button.classList.toggle(
-      "active",
-      state && activeButton === "pause45",
-    )
-  }
-  if (pause60Button) {
-    pause60Button.textContent =
-      state && activeButton === "pause60"
-        ? "Disable Pause in 60"
-        : "Pause in 60"
-    pause60Button.classList.toggle(
-      "active",
-      state && activeButton === "pause60",
-    )
+
+  // Update the active button
+  const activeBtn = buttons[activeButton]
+  if (activeBtn) {
+    activeBtn.textContent = makeActive
+      ? `Disable Pause in ${activeButton.slice(5)}`
+      : `Pause in ${activeButton.slice(5)}`
+    activeBtn.classList.toggle("active", makeActive)
   }
 }
 
@@ -62,12 +58,12 @@ function updateBadgeText(activeButton: string): void {
 }
 
 // Load the current state from chrome storage
-chrome.storage.sync.get("activePause", (data: Record<string, string>) => {
+chrome.storage.sync.get("activePause", (data: Record<string, buttonsType>) => {
   updateButtonState(data.activePause, true)
   updateBadgeText(data.activePause)
 })
 
-function handleButtonClick(buttonId: string, delay: number): void {
+function handleButtonClick(buttonId: buttonsType, delay: number): void {
   chrome.storage.sync.get("activePause", (data: Record<string, string>) => {
     if (data.activePause === buttonId) {
       // Disable the active pause
