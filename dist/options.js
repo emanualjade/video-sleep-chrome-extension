@@ -1,0 +1,2 @@
+(()=>{"use strict";chrome.storage.sync.get(null,(e=>{var t;const o=null!==(t=e.excludeHost)&&void 0!==t?t:"",c=document.getElementById("exclude_host");c.value=o,c.addEventListener("change",(e=>{if(e.target instanceof HTMLInputElement){const t={excludeHost:e.target.value};chrome.storage.sync.set(t).catch(console.error),chrome.tabs.query({}).then((e=>{for(const t of e)t.id})).catch((e=>{console.error("Could not query tabs",e)}))}}))}))})();
+//# sourceMappingURL=options.js.map

@@ -1,3 +1,5 @@
+import { Message, StoredConfig } from "./common"
+
 function addBlackOverlay(): void {
   const overlay = document.createElement("div")
   overlay.id = "black-overlay"
@@ -66,22 +68,16 @@ function addVideoEventListeners(): void {
   const videoElement = document.querySelector<HTMLVideoElement>("video")
   if (videoElement) {
     videoElement.addEventListener("play", () => {
-      chrome.storage.sync.get(
-        "activePause",
-        (data: Record<string, string | undefined>) => {
-          const delay = getDelayFromKey(data.activePause)
-          if (delay !== undefined) {
-            pauseVideoAfterDelay(delay)
-          }
-        },
-      )
+      chrome.storage.sync.get("activePause", (data: StoredConfig) => {
+        const delay = getDelayFromKey(data.activePause)
+        if (delay !== undefined) {
+          pauseVideoAfterDelay(delay)
+        }
+      })
     })
   }
 }
-interface Message {
-  startPauseTimer?: number
-  clearPausing?: boolean
-}
+
 // Listen for messages from popup.js
 chrome.runtime.onMessage.addListener((message: Message) => {
   if (message.startPauseTimer !== undefined) {
@@ -96,14 +92,11 @@ chrome.runtime.onMessage.addListener((message: Message) => {
 })
 
 // Check if a pause timer is active on page load/reload
-chrome.storage.sync.get(
-  "activePause",
-  (data: Record<string, string | undefined>) => {
-    const delay = getDelayFromKey(data.activePause)
-    if (delay !== undefined) {
-      pauseVideoAfterDelay(delay)
-    }
-    // Add event listeners to manage play/pause events
-    addVideoEventListeners()
-  },
-)
+chrome.storage.sync.get("activePause", (data: StoredConfig) => {
+  const delay = getDelayFromKey(data.activePause)
+  if (delay !== undefined) {
+    pauseVideoAfterDelay(delay)
+  }
+  // Add event listeners to manage play/pause events
+  addVideoEventListeners()
+})

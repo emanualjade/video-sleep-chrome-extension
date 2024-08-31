@@ -1,3 +1,5 @@
+import { buttonsType, Message, StoredConfig } from "./common"
+
 const pause5Button = document.getElementById(
   "pause5",
 ) as HTMLButtonElement | null
@@ -12,19 +14,16 @@ const pause60Button = document.getElementById(
 ) as HTMLButtonElement | null
 
 /// Define the buttons object
-const buttons: Record<
-  "pause5" | "pause30" | "pause45" | "pause60",
-  HTMLButtonElement | null
-> = {
+const buttons = {
   pause5: pause5Button,
   pause30: pause30Button,
   pause45: pause45Button,
   pause60: pause60Button,
-}
-type buttonsType = keyof typeof buttons
+} as const
+// type buttonsType = keyof typeof buttons
 // Function to update button text and state
 function updateButtonState(
-  activeButton: buttonsType,
+  activeButton: buttonsType | undefined,
   makeActive: boolean,
 ): void {
   // Remove the active class from all buttons and reset text content
@@ -35,7 +34,7 @@ function updateButtonState(
       button.textContent = `Pause in ${key.slice(5)}`
     }
   }
-
+  if (!activeButton) return
   // Update the active button
   const activeBtn = buttons[activeButton]
   if (activeBtn) {
@@ -47,7 +46,7 @@ function updateButtonState(
 }
 
 // Function to update the badge text
-function updateBadgeText(activeButton: string): void {
+function updateBadgeText(activeButton: buttonsType | undefined): void {
   let badgeText = ""
   if (activeButton === "pause30") badgeText = "30"
   else if (activeButton === "pause45") badgeText = "45"
@@ -58,7 +57,7 @@ function updateBadgeText(activeButton: string): void {
 }
 
 // Load the current state from chrome storage
-chrome.storage.sync.get("activePause", (data: Record<string, buttonsType>) => {
+chrome.storage.sync.get("activePause", (data: StoredConfig) => {
   updateButtonState(data.activePause, true)
   updateBadgeText(data.activePause)
 })
@@ -72,9 +71,8 @@ function handleButtonClick(buttonId: buttonsType, delay: number): void {
         chrome.action.setBadgeText({ text: "" }).catch(console.error)
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
           if (tabs[0].id !== undefined) {
-            chrome.tabs
-              .sendMessage(tabs[0].id, { clearPausing: true })
-              .catch(console.error)
+            const message: Message = { clearPausing: true }
+            chrome.tabs.sendMessage(tabs[0].id, message).catch(console.error)
           }
         })
       })
@@ -85,9 +83,8 @@ function handleButtonClick(buttonId: buttonsType, delay: number): void {
         updateBadgeText(buttonId)
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
           if (tabs[0].id !== undefined) {
-            chrome.tabs
-              .sendMessage(tabs[0].id, { startPauseTimer: delay })
-              .catch(console.error)
+            const message: Message = { startPauseTimer: delay }
+            chrome.tabs.sendMessage(tabs[0].id, message).catch(console.error)
           }
         })
       })
@@ -108,3 +105,20 @@ pause60Button?.addEventListener("click", () =>
 pause5Button?.addEventListener("click", () =>
   handleButtonClick("pause5", 300000),
 ) // 5 minutes
+
+// Options page
+const optionsElement = document.querySelector("#go-to-options")
+if (!optionsElement) {
+  console.error("Could not find options element")
+} else {
+  optionsElement.addEventListener("click", function () {
+    // This code is based on Chrome for Developers documentation
+    if (chrome.runtime.openOptionsPage) {
+      chrome.runtime.openOptionsPage().catch((error: unknown) => {
+        console.error("Could not open options page", error)
+      })
+    } else {
+      window.open(chrome.runtime.getURL("options.html"))
+    }
+  })
+}
