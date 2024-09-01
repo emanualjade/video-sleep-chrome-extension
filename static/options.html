@@ -1,13 +1,21 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Advanced options</title>
-    <link rel="stylesheet" type="text/css" href="options.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extension Options</title>
   </head>
   <body>
-    <h2>Advanced options</h2>
-    <h3>Web host to exclude</h3>
-    <input id="exclude_host" type="text" />
+    <h1>Manage Exclude Hosts</h1>
+    <form id="exclude-form">
+      <label for="exclude_host">Enter host to exclude:</label>
+      <input type="text" id="exclude_host" name="exclude_host" required />
+      <button type="submit">Add Host</button>
+    </form>
+
+    <h2>Excluded Hosts</h2>
+    <ul id="excluded-hosts-list"></ul>
+
     <script src="options.js"></script>
   </body>
 </html>

@@ -4,10 +4,11 @@ export interface Message {
   startPauseTimer?: number
   clearPausing?: boolean
   excludeHost?: string
+  excludeHosts?: string[]
 }
 
 export interface StoredConfig {
   activePause?: buttonsType
   excludeHost?: string
+  excludeHosts?: string[]
 }
-console.log("Hello from common.ts")
