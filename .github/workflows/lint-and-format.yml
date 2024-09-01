@@ -1,4 +1,4 @@
-name: Lint check, format check, and build
+name: Lint check, format check, run tests and build
 
 on:
   push:
@@ -44,3 +44,7 @@ jobs:
       - name: Build
         run: |
           npm run build
+
+      - name: Test
+        run: |
+          npm run test

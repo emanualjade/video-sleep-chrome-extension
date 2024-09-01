@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1725227996872" clover="3.2.0">
+  <project timestamp="1725227996872" name="All files">
+    <metrics statements="181" coveredstatements="0" conditionals="85" coveredconditionals="0" methods="50" coveredmethods="0" elements="316" coveredelements="0" complexity="0" loc="181" ncloc="181" packages="1" files="4" classes="4"/>
+    <file name="background.ts" path="/Users/emanualjade/Sites/chrome/tuber/src/background.ts">
+      <metrics statements="12" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <line num="1" count="0" type="stmt"/>
+      <line num="2" count="0" type="stmt"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="11" count="0" type="stmt"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="17" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="18" count="0" type="stmt"/>
+    </file>
+    <file name="content.ts" path="/Users/emanualjade/Sites/chrome/tuber/src/content.ts">
+      <metrics statements="65" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="14" coveredmethods="0"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="21" count="0" type="stmt"/>
+      <line num="22" count="0" type="stmt"/>
+      <line num="23" count="0" type="stmt"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="25" count="0" type="stmt"/>
+      <line num="26" count="0" type="stmt"/>
+      <line num="27" count="0" type="stmt"/>
+      <line num="28" count="0" type="stmt"/>
+      <line num="29" count="0" type="stmt"/>
+      <line num="31" count="0" type="stmt"/>
+      <line num="33" count="0" type="stmt"/>
+      <line num="37" count="0" type="stmt"/>
+      <line num="38" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="39" count="0" type="stmt"/>
+      <line num="45" count="0" type="stmt"/>
+      <line num="49" count="0" type="stmt"/>
+      <line num="50" count="0" type="stmt"/>
+      <line num="51" count="0" type="stmt"/>
+      <line num="52" count="0" type="cond" truecount="0" falsecount="3"/>
+      <line num="53" count="0" type="stmt"/>
+      <line num="54" count="0" type="stmt"/>
+      <line num="61" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="62" count="0" type="stmt"/>
+      <line num="63" count="0" type="stmt"/>
+      <line num="69" count="0" type="cond" truecount="0" falsecount="5"/>
+      <line num="71" count="0" type="stmt"/>
+      <line num="73" count="0" type="stmt"/>
+      <line num="75" count="0" type="stmt"/>
+      <line num="77" count="0" type="stmt"/>
+      <line num="79" count="0" type="stmt"/>
+      <line num="85" count="0" type="stmt"/>
+      <line num="86" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="87" count="0" type="stmt"/>
+      <line num="88" count="0" type="stmt"/>
+      <line num="89" count="0" type="stmt"/>
+      <line num="90" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="91" count="0" type="stmt"/>
+      <line num="99" count="0" type="stmt"/>
+      <line num="100" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="101" count="0" type="stmt"/>
+      <line num="102" count="0" type="stmt"/>
+      <line num="105" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="106" count="0" type="stmt"/>
+      <line num="107" count="0" type="stmt"/>
+      <line num="108" count="0" type="stmt"/>
+      <line num="111" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="113" count="0" type="stmt"/>
+      <line num="114" count="0" type="stmt"/>
+      <line num="117" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="118" count="0" type="stmt"/>
+      <line num="123" count="0" type="stmt"/>
+      <line num="124" count="0" type="stmt"/>
+      <line num="125" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="127" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="128" count="0" type="stmt"/>
+      <line num="129" count="0" type="stmt"/>
+      <line num="132" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="133" count="0" type="stmt"/>
+      <line num="136" count="0" type="stmt"/>
+    </file>
+    <file name="options.ts" path="/Users/emanualjade/Sites/chrome/tuber/src/options.ts">
+      <metrics statements="47" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="17" coveredmethods="0"/>
+      <line num="2" count="0" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="11" count="0" type="stmt"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="16" count="0" type="stmt"/>
+      <line num="17" count="0" type="stmt"/>
+      <line num="18" count="0" type="stmt"/>
+      <line num="19" count="0" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="23" count="0" type="stmt"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="27" count="0" type="stmt"/>
+      <line num="28" count="0" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="35" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="36" count="0" type="stmt"/>
+      <line num="39" count="0" type="stmt"/>
+      <line num="40" count="0" type="stmt"/>
+      <line num="42" count="0" type="stmt"/>
+      <line num="45" count="0" type="stmt"/>
+      <line num="46" count="0" type="stmt"/>
+      <line num="47" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="48" count="0" type="stmt"/>
+      <line num="51" count="0" type="stmt"/>
+      <line num="61" count="0" type="stmt"/>
+      <line num="62" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="63" count="0" type="stmt"/>
+      <line num="67" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="70" count="0" type="stmt"/>
+      <line num="72" count="0" type="stmt"/>
+      <line num="73" count="0" type="stmt"/>
+      <line num="75" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="77" count="0" type="stmt"/>
+      <line num="78" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="81" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="82" count="0" type="stmt"/>
+      <line num="86" count="0" type="stmt"/>
+      <line num="87" count="0" type="stmt"/>
+      <line num="89" count="0" type="stmt"/>
+      <line num="92" count="0" type="stmt"/>
+      <line num="95" count="0" type="stmt"/>
+      <line num="96" count="0" type="stmt"/>
+      <line num="97" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="98" count="0" type="stmt"/>
+      <line num="101" count="0" type="stmt"/>
+    </file>
+    <file name="popup.ts" path="/Users/emanualjade/Sites/chrome/tuber/src/popup.ts">
+      <metrics statements="57" coveredstatements="0" conditionals="36" coveredconditionals="0" methods="15" coveredmethods="0"/>
+      <line num="2" count="0" type="stmt"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="7" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="18" count="0" type="stmt"/>
+      <line num="31" count="0" type="stmt"/>
+      <line num="32" count="0" type="stmt"/>
+      <line num="33" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="35" count="0" type="stmt"/>
+      <line num="38" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="40" count="0" type="stmt"/>
+      <line num="41" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="45" count="0" type="stmt"/>
+      <line num="51" count="0" type="stmt"/>
+      <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="55" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="57" count="0" type="stmt"/>
+      <line num="61" count="0" type="stmt"/>
+      <line num="62" count="0" type="stmt"/>
+      <line num="63" count="0" type="stmt"/>
+      <line num="67" count="0" type="stmt"/>
+      <line num="68" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="70" count="0" type="stmt"/>
+      <line num="71" count="0" type="stmt"/>
+      <line num="72" count="0" type="stmt"/>
+      <line num="73" count="0" type="stmt"/>
+      <line num="74" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="75" count="0" type="stmt"/>
+      <line num="76" count="0" type="stmt"/>
+      <line num="82" count="0" type="stmt"/>
+      <line num="83" count="0" type="stmt"/>
+      <line num="84" count="0" type="stmt"/>
+      <line num="85" count="0" type="stmt"/>
+      <line num="86" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="87" count="0" type="stmt"/>
+      <line num="88" count="0" type="stmt"/>
+      <line num="97" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="98" count="0" type="stmt"/>
+      <line num="100" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="101" count="0" type="stmt"/>
+      <line num="103" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="104" count="0" type="stmt"/>
+      <line num="106" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="107" count="0" type="stmt"/>
+      <line num="111" count="0" type="stmt"/>
+      <line num="112" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="113" count="0" type="stmt"/>
+      <line num="115" count="0" type="stmt"/>
+      <line num="117" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="118" count="0" type="stmt"/>
+      <line num="119" count="0" type="stmt"/>
+      <line num="122" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>
