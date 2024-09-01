@@ -1,0 +1,17 @@
+@import "./common.css";
+
+.button-container {
+  @apply flex flex-col gap-[5px] w-[250px] p-4;
+}
+.btn {
+  @apply w-full h-[50px] bg-white cursor-pointer border rounded-lg border-solid border-[#4caf50];
+  &:hover {
+    @apply bg-[#e3f5e4];
+  }
+}
+.btn.active {
+  @apply bg-[#4caf50] text-white;
+}
+.button-link {
+  @apply [background:none] [font-family:arial,sans-serif] text-[#069] underline cursor-pointer m-2.5 p-0 border-[none];
+}

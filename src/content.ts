@@ -1,5 +1,21 @@
 import { Message, StoredConfig } from "./common"
 
+function normalizeHost(host: string) {
+  // Remove protocol (http, https, etc.) and "www" if it exists
+  return host.replace(/^(https?:\/\/)?(www\.)?/, "").toLowerCase()
+}
+
+function isHostExcluded(hostname: string, excludedHosts: string[]): boolean {
+  // Normalize the current hostname
+  const normalizedHostname = normalizeHost(hostname)
+  // Normalize and compare each excluded host
+  return excludedHosts.some((excludedHost) => {
+    const normalizedExcludedHost = normalizeHost(excludedHost)
+    // Check if the hostname ends with the excluded host
+    return normalizedHostname.endsWith(normalizedExcludedHost)
+  })
+}
+
 function addBlackOverlay(): void {
   const overlay = document.createElement("div")
   overlay.id = "black-overlay"
@@ -26,6 +42,7 @@ function removeBlackOverlay(): void {
 
 // Variable to store the active timer ID
 let activeTimer: number | undefined
+let excludeHosts: string[] = []
 
 // Function to pause the video after a specified delay
 function pauseVideoAfterDelay(delay: number): void {
@@ -68,7 +85,7 @@ function addVideoEventListeners(): void {
   const videoElement = document.querySelector<HTMLVideoElement>("video")
   if (videoElement) {
     videoElement.addEventListener("play", () => {
-      chrome.storage.sync.get("activePause", (data: StoredConfig) => {
+      chrome.storage.sync.get(null, (data: StoredConfig) => {
         const delay = getDelayFromKey(data.activePause)
         if (delay !== undefined) {
           pauseVideoAfterDelay(delay)
@@ -80,6 +97,17 @@ function addVideoEventListeners(): void {
 
 // Listen for messages from popup.js
 chrome.runtime.onMessage.addListener((message: Message) => {
+  if (message.excludeHosts !== undefined) {
+    excludeHosts = message.excludeHosts
+    return
+  }
+
+  if (isHostExcluded(window.location.hostname, excludeHosts)) {
+    console.log("Host is excluded from pausing")
+    clearExistingTimer()
+    return
+  }
+
   if (message.startPauseTimer !== undefined) {
     // Clear any existing timer and start a new one
     clearExistingTimer()
@@ -92,8 +120,15 @@ chrome.runtime.onMessage.addListener((message: Message) => {
 })
 
 // Check if a pause timer is active on page load/reload
-chrome.storage.sync.get("activePause", (data: StoredConfig) => {
+chrome.storage.sync.get(null, (data: StoredConfig) => {
   const delay = getDelayFromKey(data.activePause)
+  excludeHosts = data.excludeHosts ?? []
+
+  if (isHostExcluded(window.location.hostname, excludeHosts)) {
+    console.log("Host is excluded from pausing")
+    return
+  }
+
   if (delay !== undefined) {
     pauseVideoAfterDelay(delay)
   }

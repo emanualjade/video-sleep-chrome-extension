@@ -1,4 +1,5 @@
 import { buttonsType, Message, StoredConfig } from "./common"
+import "./popup.css"
 
 const pause5Button = document.getElementById(
   "pause5",
